@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Contact form</title>
+</head>
+<body>
+  <div id="form-container">
+    <h1>Contact Us</h1>
+    <form>
+      <fieldset>
+        <label for="first-name">First Name <span class="required">*</span>
+          <input type="text" name="first-name" id="first-name">
+          <span>This field is required</span>
+        </label>
+
+        <label for="last-name">Last Name <span class="required">*</span>
+          <input type="text" name="last-name" id="last-name">
+          <span>This field is required</span>
+        </label>
+      </fieldset>
+      <fieldset>
+        <label for="email-address">Email Address <span class="required">*</span>
+          <input type="email" name="email-address" id="email-address">
+        </label>
+        <span>Please enter a valid email address</span>
+      </fieldset>
+      <fieldset>
+        <legend>Query Type <span class="required">*</span></legend>
+        <label for="general-enquiry" class="query-type">
+          <input type="radio" name="query-type" id="general-enquiry"> General Enquiry
+        </label>
+        <label for="support-request" class="query-type">
+          <input type="radio" name="query-type" id="support-request"> Support Request
+        </label>
+      </fieldset>
+      <span>Please select a query type</span>
+      <fieldset>
+        <label for="message">Message <span class="required">*</span>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+        </label>
+        <span>This field is required</span>
+      </fieldset>
+      <label for="consent" class="consent">
+        <input type="checkbox" name="consent" id="consent">
+          <span class="custom-checkbox"></span>
+          I consent to being contacted by the team
+        <span class="required">*</span>
+      </label>
+      <span>To submit this form please consent to being contacted</span>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+   <div id="success-message">
+
+     <h3><img src="assets/images/icon-success-check.svg" alt="Done">Message Sent!</h3>
+     <p>Thanks for completing the form. We'll be in touch soon!</p>
+   </div>
+
+  
+
+
+</body>
+</html>
