@@ -84,7 +84,7 @@ fieldset:nth-last-of-type(2) label{
 
 input[type="text"], input[type="email"], textarea{
     width: 100%;
-    border: 1px solid var(--Grey-medium);
+    border: 1px solid ;
     border-radius: 3px;
     padding: 10px 5px;
     margin: 5px 0;
