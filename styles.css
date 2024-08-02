@@ -185,3 +185,20 @@ span{
     margin-right: 15px;
 }
 
+
+@media(max-device-width: 500px){
+    #form-container {
+        background-color: var(--White);
+        padding: 20px 30px;
+        width: 50%;
+    }
+    fieldset:first-of-type, fieldset:nth-last-of-type(2){
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        gap: 0;
+    }
+}
+
+
