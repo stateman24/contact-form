@@ -4,52 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="nomalize.css">
+  <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="styles.css">
   <title>Contact form</title>
 </head>
 <body>
   <div id="form-container">
-    <form class="form-wrapper">
-      <h1>Contact Us</h1>
+    <form class="form">
+        <div class="fm-hd">
+            <h1>Contact Us</h1>
+        </div>
       <div class="fn fn-wrap">
         <label for="first-name" class="rq">First Name</label>
-        <input type="text" name="first-name" id="first-name">
-        <span>This field is required</span>
+        <input type="text" name="first-name" id="first-name" class="">
+        <span class="err-mg">This field is required</span>
       </div>
       <div class="ln ln-wrap">
         <label for="last-name" class="rq">Last Name</label>
-        <input type="text" name="last-name" id="last-name">
-        <span>This field is required</span>
+        <input type="text" name="last-name" id="last-name" class="">
+        <span class="err-mg">This field is required</span>
       </div>
       <div class="ea ea-wrap">
         <label for="email-address" class="rq">Email Address</label>
-        <input type="email" name="email-address" id="email-address">
-        <span>Please enter a valid email address</span>
+        <input type="email" name="email-address" id="email-address" class="">
+        <span class="err-mg">Please enter a valid email address</span>
       </div>
       <div id="query" class="qr-wrap">
-        <span class="rq">Query Type</span>
-        <div class="gn gn-wrap">
+        <span class="rq qr-header">Query Type</span>
+        <div class="qr-type gn-wrap ">
+            <input type="radio" name="query-type" id="general-enquiry">
           <label for="general-enquiry" class="query-type">General Enquiry</label>
-          <input type="radio" name="query-type" id="general-enquiry">
         </div>
-       <div class=" sp sp-wrap">
+       <div class="qr-type sp-wrap active">
+           <input type="radio" name="query-type" id="support-request">
          <label for="support-request" class="query-type">Support Request</label>
-         <input type="radio" name="query-type" id="support-request">
        </div>
-        <span>Please select a query type</span>
+        <span class="err-mg qr-err">Please select a query type</span>
       </div>
       <div class="mg mg-wrap">
         <label for="message" class="rq">Message</label>
         <textarea name="message" id="message" cols="30" rows="10"></textarea>
-        <span>This field is required</span>
+        <span class="err-mg">This field is required</span>
       </div>
-      <div>
+      <div class="cn-wrap">
         <input type="checkbox" name="consent" id="consent">
         <label for="consent" class="consent rq">I consent to being contacted by the team</label>
-        <span id="consent-message">To submit this form, please consent to being contacted</span>
+        <span class="err-mg">To submit this form, please consent to being contacted</span>
       </div>
-      <input id="summit" type="submit" value="Submit">
+      <input id="summit" type="submit" value="Submit" class="btn">
     </form>
   </div>
 

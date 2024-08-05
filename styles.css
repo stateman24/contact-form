@@ -20,12 +20,14 @@
     /* Font Weight */
     --font-400: 400;
     --font-700: 700;
+
+    /* Font size */
+    --font-size: 16px;
 }
 
 body {
     background: var(--Green-light);
     width: 100%;
-    font-size: 16px;
 }
 
 
@@ -33,7 +35,38 @@ body {
     display: grid;
     place-items: center;
     font-family: var(--karla-font);
+    font-size: var(--font-size);
+    padding: 5rem;
 }
+
+.form{
+    display: grid;
+    background-color: var(--White);
+    border-radius: 0.5rem;
+    border: none;
+    padding: 2rem;
+    width: 75%;
+    gap: 1rem;
+    grid-template-areas:
+            "hd hd"
+            "fn ln"
+            "ea ea"
+            "qr qr"
+            "mg mg"
+            "cn cn"
+            "btn btn";
+}
+
+/* gird template area */
+.fm-hd{grid-area: hd;}
+.fn-wrap{grid-area: fn;}
+.ln-wrap{grid-area: ln;}
+.ea-wrap{grid-area: ea;}
+.qr-wrap{grid-area: qr;}
+.mg-wrap{grid-area: mg;}
+.cn-wrap{grid-area: cn;}
+.btn{grid-area: btn;}
+/* =============================== */
 
 
 h1{
@@ -48,44 +81,58 @@ label, input[type="text"], input[type="email"], textarea{
 }
 
 
-label, legend, input[type="text"], input[type="email"], textarea{
+label, input[type="text"], input[type="email"], textarea{
     font-weight: var(--font-400);
 }
 
-
-fieldset {
-    border: None;
-    padding: 10px 0;
+#query{
+    display: grid;
+    gap: 1rem;
+    grid-template-areas:
+        "qhd qhd"
+        "gn sp"
+        "err err";
 }
 
+.qr-header{grid-area: qhd;}
+.sp-wrap{grid-area: sp;}
+.gn-wrap{grid-area: gn;}
+.qr-err{grid-area: err;}
 
-fieldset:first-of-type, fieldset:nth-last-of-type(2){
+
+.sp-wrap, .gn-wrap{
     display: flex;
-    flex-direction: row;
-    justify-items: center;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    padding: 0;
+    cursor: pointer;
+    gap: 0.2rem;
+    place-items: center;
 }
 
 
-fieldset:first-of-type label {
-    width: 100%;
-}
-
-
-fieldset:nth-last-of-type(2) label{
+.qr-type{
     border: 1px solid var(--Grey-medium);
     border-radius: 5px;
-    padding: 10px 20px;
-    margin: 10px 0;
-    width: 75%;
+    padding: 0.5rem 1rem;
+    width: 100%;
 }
 
+input[type="radio"]{
+    appearance: none;
+    cursor: pointer;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid var(--Grey-medium);
+    border-radius: 1em;
+}
+
+input[type="radio"]:checked{
+    background: url("assets/images/icon-radio-selected.svg") no-repeat center center;
+    background-size: 100%;
+    border: none;
+}
 
 input[type="text"], input[type="email"], textarea{
     width: 100%;
+    cursor: pointer;
     border: 1px solid ;
     border-radius: 3px;
     padding: 10px 5px;
@@ -93,15 +140,16 @@ input[type="text"], input[type="email"], textarea{
 }
 
 
-input[type="text"]:hover, input[type="email"]:hover{
+input[type="submit"]{
+    margin: 10px auto;
+    cursor: pointer;
+    width: 100%;
+    padding: 15px 25px;
+    background-color: var(--Green-medium);
+    border-radius: 5px;
     border: 1px solid var(--Green-medium);
 }
 
-
-input[type="text"]:focus, input[type="email"]:focus{
-    background-color: var(--Green-light);
-    outline: 2px solid var(--Green-light);
-}
 
 textarea{
     width: 100%;
@@ -121,10 +169,13 @@ textarea{
 
 input[type="checkbox"]{
     appearance: none;
+    cursor: pointer;
     width: 1.25rem;
     height: 1.25rem;
     border: 1px solid var(--Green-medium);
 }
+
+
 
 input[type="checkbox"]:checked{
     background: url("assets/images/icon-checkbox-check.svg") no-repeat center center;
@@ -132,15 +183,11 @@ input[type="checkbox"]:checked{
     border: 1px solid var(--White);
 }
 
-input[type="submit"]{
-     margin: 10px auto;
-     width: 100%;
-     padding: 15px 25px;
-     background-color: var(--Green-medium);
-     border-radius: 5px;
-     border: 1px solid var(--Green-medium);
- }
+.err-mg{
+    display: block;
+    color: red;
 
+}
 
 .rq:after{
     content: "*";
@@ -148,7 +195,7 @@ input[type="submit"]{
     margin: 0;
     color: var(--Green-medium);
 }
-/* Dont Touch */
+/* Don't Touch */
 /* ========================================= */
 #success-message {
     display: none;
@@ -168,20 +215,40 @@ input[type="submit"]{
 }
 /* ========================================== */
 
+/* misc */
+.focus{
+    background-color: var(--Green-light);
+    border: 1px solid var(--Green-medium);
+}
 
-@media(max-device-width: 500px){
-    #form-container {
+.active{
+    background-color: var(--Green-light);
+    border: 1px solid var(--Green-medium);
+}
+
+
+@media(max-device-width: 700px){
+    .form{
         background-color: var(--White);
-        padding: 20px 30px;
-        width: 50%;
+        width: 100%;
+        grid-template-areas:
+            "hd"
+            "fn"
+            "ln"
+            "ea"
+            "qr"
+            "mg"
+            "cn"
+            "btn";
     }
-    fieldset:first-of-type, fieldset:nth-last-of-type(2){
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        align-items: center;
-        gap: 0;
+    #query{
+        grid-template-areas:
+        "qhd"
+        "gn"
+        "sp"
+        "err";
     }
+
 }
 
 
