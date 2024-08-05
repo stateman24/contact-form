@@ -15,10 +15,12 @@
     --Grey-darker: hsl(187, 24%, 22%);
 }
 
+
 *{
     padding: 0;
     margin: 0;
 }
+
 
 html, body{
     height: 100%;
@@ -26,11 +28,13 @@ html, body{
     padding: 0;
 }
 
+
 body {
     background: var(--Green-light);
     width: 100%;
     font-size: 16px;
 }
+
 
 #form-container {
     background-color: var(--White);
@@ -42,25 +46,32 @@ body {
     width: 40%;
 }
 
+
 h1{
     font-family: "Karla", sans-serif;
     font-weight: 700;
     margin: 5px 0;
 }
 
+
 label, input[type="text"], input[type="email"], textarea{
     display: block;
     width: 100%;
 }
 
+
 label, legend, input[type="text"], input[type="email"], textarea{
     font-family: "Karla", sans-serif;
     font-weight: 400;
 }
+
+
 fieldset {
     border: None;
     padding: 10px 0;
 }
+
+
 fieldset:first-of-type, fieldset:nth-last-of-type(2){
     display: flex;
     flex-direction: row;
@@ -70,9 +81,12 @@ fieldset:first-of-type, fieldset:nth-last-of-type(2){
     width: 100%;
     padding: 0;
 }
+
+
 fieldset:first-of-type label {
     width: 100%;
 }
+
 
 fieldset:nth-last-of-type(2) label{
     border: 1px solid var(--Grey-medium);
@@ -82,6 +96,7 @@ fieldset:nth-last-of-type(2) label{
     width: 75%;
 }
 
+
 input[type="text"], input[type="email"], textarea{
     width: 100%;
     border: 1px solid ;
@@ -90,9 +105,11 @@ input[type="text"], input[type="email"], textarea{
     margin: 5px 0;
 }
 
+
 input[type="text"]:hover, input[type="email"]:hover{
     border: 1px solid var(--Green-medium);
 }
+
 
 input[type="text"]:focus, input[type="email"]:focus{
     background-color: var(--Green-light);
@@ -114,8 +131,10 @@ textarea{
     transition: all 0.4s cubic-bezier(0.54, 0.01, 0, 0.14); */
 }
 
+
 input[type="checkbox"]{
     display: none;
+
 }
 
 
@@ -130,7 +149,8 @@ input[type="checkbox"]{
     margin-bottom: 0;
 }
 
-.custom-checkbox::after{
+
+.custom-checkbox::before{
     content: '';
     position: absolute;
     display: none;
@@ -142,9 +162,11 @@ input[type="checkbox"]{
     height: 20px;
 }
 
-.consent input[type="checkbox"]:checked + .custom-checkbox::after{
+
+input[type="checkbox"]:checked + .custom-checkbox::before{
     display: inline;
 }
+
 
 input[type="submit"]{
      margin: 10px auto;
@@ -155,19 +177,15 @@ input[type="submit"]{
      border: 1px solid var(--Green-medium);
  }
 
-span{
-    display: None;
-    color: var(--Red);
-    margin: 2px;
-    font-family: "Karla", sans-serif;
-    font-weight: 400;
-}
-.required{
+
+.rq:after{
+    content: "*";
     display: inline-block;
     margin: 0;
     color: var(--Green-medium);
 }
-
+/* Dont Touch */
+/* ========================================= */
 #success-message {
     display: none;
     background-color: var(--Grey-darker);
@@ -184,6 +202,7 @@ span{
 #success-message img {
     margin-right: 15px;
 }
+/* ========================================== */
 
 
 @media(max-device-width: 500px){
