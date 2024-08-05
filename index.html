@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="nomalize.css">
   <link rel="stylesheet" href="styles.css">
   <title>Contact form</title>
 </head>
 <body>
   <div id="form-container">
-    <h1>Contact Us</h1>
-    <form>
+    <form class="form-wrapper">
+      <h1>Contact Us</h1>
       <div class="fn fn-wrap">
         <label for="first-name" class="rq">First Name</label>
         <input type="text" name="first-name" id="first-name">
@@ -45,7 +46,6 @@
       </div>
       <div>
         <input type="checkbox" name="consent" id="consent">
-        <span class="custom-checkbox"></span>
         <label for="consent" class="consent rq">I consent to being contacted by the team</label>
         <span id="consent-message">To submit this form, please consent to being contacted</span>
       </div>

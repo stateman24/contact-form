@@ -13,21 +13,14 @@
     --White: hsl(0, 0%, 100%);
     --Grey-medium: hsl(186, 15%, 59%);
     --Grey-darker: hsl(187, 24%, 22%);
+
+    /* Font Family */
+    --karla-font: "Karla", sans-serif;
+
+    /* Font Weight */
+    --font-400: 400;
+    --font-700: 700;
 }
-
-
-*{
-    padding: 0;
-    margin: 0;
-}
-
-
-html, body{
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
 
 body {
     background: var(--Green-light);
@@ -37,19 +30,14 @@ body {
 
 
 #form-container {
-    background-color: var(--White);
-    padding: 20px 40px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 40%;
+    display: grid;
+    place-items: center;
+    font-family: var(--karla-font);
 }
 
 
 h1{
-    font-family: "Karla", sans-serif;
-    font-weight: 700;
+    font-weight: var(--font-700);
     margin: 5px 0;
 }
 
@@ -61,8 +49,7 @@ label, input[type="text"], input[type="email"], textarea{
 
 
 label, legend, input[type="text"], input[type="email"], textarea{
-    font-family: "Karla", sans-serif;
-    font-weight: 400;
+    font-weight: var(--font-400);
 }
 
 
@@ -133,40 +120,17 @@ textarea{
 
 
 input[type="checkbox"]{
-    display: none;
-
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid var(--Green-medium);
 }
 
-
-.custom-checkbox{
-    display: inline-block;
-    position: relative;
-    width: 15px;
-    height: 15px;
-    border: 2px solid var(--Grey-medium);
-    margin-right: 10px;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-
-.custom-checkbox::before{
-    content: '';
-    position: absolute;
-    display: none;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+input[type="checkbox"]:checked{
     background: url("assets/images/icon-checkbox-check.svg") no-repeat center center;
-    width: 20px;
-    height: 20px;
+    background-size: 100%;
+    border: 1px solid var(--White);
 }
-
-
-input[type="checkbox"]:checked + .custom-checkbox::before{
-    display: inline;
-}
-
 
 input[type="submit"]{
      margin: 10px auto;
