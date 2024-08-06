@@ -3,6 +3,38 @@ const emailFormatValidation = (value) => {
     return emailRegex.test(value);
 }
 
+const handleErrorBorder = (element, errElement) => {
+    let hasError = false;
+   if(!errElement.classList.contains('hidden')) {
+       hasError = true;
+   }
+   
+   if(hasError){
+       element.classList.add("err-border");
+   }else{
+       element.classList.remove("err-border")
+   }
+}
+
+const setActiveState = (event) => {
+    event.target.classList.add("active");
+}
+
+const nonActiveState = (event) => {
+    event.target.classList.remove('active');
+}
+
+const handleQueryChange = (event) => {
+    queryType.forEach(input =>{
+        if(input.checked){
+            input.parentElement.classList.add('active')
+        }else{
+            input.parentElement.classList.remove("active")
+        }
+    })
+}
+
+
 
 
 // ----Selecting Form element-----
@@ -11,21 +43,22 @@ const firstname = document.querySelector("#first-name");
 const lastname = document.querySelector("#last-name")
 const emailAddress = document.querySelector("#email-address");
 const queryType = document.querySelectorAll("input[name='query-type']")
-const generalEnquiry = document.querySelector("#general-enquiry");
-const supportRequest = document.querySelector("#support-request");
 const message = document.querySelector("#message");
 const consent = document.querySelector("#consent")
 const successMessage = document.querySelector("#success-message")
 
+const allTextInputs =  [firstname, lastname, emailAddress, message];
 
 const handleTextInput = (element, errElement) => {
     let isValid;
     if(element.value === ""){
         errElement.classList.remove("hidden");
+        handleErrorBorder(element, errElement);
         isValid = false;
     }
     else{
         errElement.classList.add("hidden");
+        handleErrorBorder(element, errElement);
         isValid = true;
     }
     return isValid;
@@ -64,10 +97,7 @@ const handleConsent = (element, errElement) => {
 
 const handleEmailInput = (element, errElement) => {
     let isValid;
-    if(element.value === ""){
-        isValid = false;
-        errElement.classList.remove("hidden");
-    }else if(!emailFormatValidation(element.value)){
+    if(element.value === "" || !emailFormatValidation(element.value)){
         isValid = false;
         errElement.classList.remove("hidden");
     }else {
@@ -115,5 +145,16 @@ const validateForm = (event) => {
         form.reset();
     }
 }
-console.log(queryType);
+
+
+queryType.forEach(queryOptions =>{
+    queryOptions.addEventListener("change", handleQueryChange);
+})
+
+allTextInputs.forEach(textInputs => {
+    textInputs.addEventListener("focus", setActiveState);
+    textInputs.addEventListener("blur", nonActiveState); 
+})
+
+console.log(allTextInputs);
 form.addEventListener("submit", validateForm);
