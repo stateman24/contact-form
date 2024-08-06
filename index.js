@@ -1,90 +1,160 @@
-const form = document.querySelector("form")
-const firstName = document.getElementById("first-name");
-const lastName = document.getElementById("last-name");
-const emailAddress = document.getElementById("email-address");
-const generalQuery = document.getElementById("general-enquiry")
-const supportRequest = document.getElementById("support-request");
-const message = document.getElementById("message");
-const consent = document.getElementById("consent");
+const emailFormatValidation = (value) => {
+    let emailRegex = /[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+}
+
+const handleErrorBorder = (element, errElement) => {
+    let hasError = false;
+   if(!errElement.classList.contains('hidden')) {
+       hasError = true;
+   }
+   
+   if(hasError){
+       element.classList.add("err-border");
+   }else{
+       element.classList.remove("err-border")
+   }
+}
+
+const setActiveState = (event) => {
+    event.target.classList.add("active");
+}
+
+const nonActiveState = (event) => {
+    event.target.classList.remove('active');
+}
+
+const handleQueryChange = (event) => {
+    queryType.forEach(input =>{
+        if(input.checked){
+            input.parentElement.classList.add('active')
+        }else{
+            input.parentElement.classList.remove("active")
+        }
+    })
+}
 
 
 
-form.addEventListener("submit", evt =>{
-    validateForm(evt)
+
+// ----Selecting Form element-----
+const form = document.querySelector(".form");
+const firstname = document.querySelector("#first-name");
+const lastname = document.querySelector("#last-name")
+const emailAddress = document.querySelector("#email-address");
+const queryType = document.querySelectorAll("input[name='query-type']")
+const message = document.querySelector("#message");
+const consent = document.querySelector("#consent")
+const successMessage = document.querySelector("#success-message")
+
+const allTextInputs =  [firstname, lastname, emailAddress, message];
+
+const handleTextInput = (element, errElement) => {
+    let isValid;
+    if(element.value === ""){
+        errElement.classList.remove("hidden");
+        handleErrorBorder(element, errElement);
+        isValid = false;
+    }
+    else{
+        errElement.classList.add("hidden");
+        handleErrorBorder(element, errElement);
+        isValid = true;
+    }
+    return isValid;
+}
+
+const handleQueryInput = (elements, errElement) => {
+    let isValid
+    let count = 0
+    elements.forEach(element => {
+       if(element.checked){
+           count += 1;
+       } 
+    })
+
+    if(count){
+        isValid = true;
+        errElement.classList.add("hidden");
+    }else {
+        isValid = false;
+        errElement.classList.remove("hidden");
+    }
+    return isValid;
+}
+
+const handleConsent = (element, errElement) => {
+    let isValid;
+    if(element.checked){
+        isValid = true;
+        errElement.classList.add("hidden");
+    }else {
+        isValid = false;
+        errElement.classList.remove("hidden")
+    }
+    return isValid;
+}
+
+const handleEmailInput = (element, errElement) => {
+    let isValid;
+    if(element.value === "" || !emailFormatValidation(element.value)){
+        isValid = false;
+        errElement.classList.remove("hidden");
+    }else {
+        isValid = true;
+        errElement.classList.add("hidden");
+    }
+    return isValid;
+}
+
+const displaySuccessMessage = (element) => {
+    element.classList.remove('hidden');
+    element.setAttribute('aria-hidden', false);
+    setTimeout(() => {
+        element.classList.add('hidden');
+        element.setAttribute('aria-hidden', true);
+    }, 5000)
+}
+
+const validateForm = (event) => {
+    event.preventDefault();
+    
+    const fnRequired = document.querySelector(".fn-required");
+    const isFirstnameValid = handleTextInput(firstname, fnRequired);
+    
+    const lnRequired = document.querySelector(".ln-required");
+    const isLastnameValid = handleTextInput(lastname, lnRequired);
+    
+    const emRequired = document.querySelector(".ea-required");
+    const isEmailValid = handleEmailInput(emailAddress, emRequired);
+    
+    const queryRequired = document.querySelector(".qr-required");
+    const isChecked = handleQueryInput(queryType, queryRequired);
+    
+    const mgRequired = document.querySelector(".mg-required");
+    const isMessageValid = handleTextInput(message, mgRequired);
+    
+    const cnRequired = document.querySelector(".cn-required");
+    const isConsentChecked = handleConsent(consent, cnRequired);
+    
+    let textInputValid = isFirstnameValid && isLastnameValid && isEmailValid && isMessageValid;
+    let checkInputValid = isChecked && isConsentChecked;
+    
+    if(textInputValid && checkInputValid){
+        displaySuccessMessage(successMessage);
+        form.reset();
+    }
+}
+
+
+queryType.forEach(queryOptions =>{
+    queryOptions.addEventListener("change", handleQueryChange);
 })
-// create a error message by setting the span tag to block
-const createMessage = (element) => {
-    element.style.border = "1px solid red";
-    let elementNextSibling = element.nextElementSibling;
-    elementNextSibling.style.display = "block";
-}
-// removes an error message by setting the span tag to none
-const removeMessage = (element) => {
-    let elementNextSibling = element.nextElementSibling
-    elementNextSibling.style.display = "none"
-    element.style.border = "1px solid var(--Grey-medium)"
-}
-// validates the form by checking all the input values are correct
- const validateForm = (evt) => {
-    let firstNameValue = firstName.value.trim();
-    let lastNameValue = lastName.value.trim();
-    let emailAddressValue = emailAddress.value.trim();
-    let supportRequestChecked = supportRequest.checked;
-    let generalEnquiryChecked = generalQuery.checked;
-    let messageValue = message.value.trim()
-    let formIsValid = true;
-    if(firstNameValue === ""){
-        createMessage(firstName);
-        formIsValid = false;
-        evt.preventDefault()
-    }else{
-        removeMessage(firstName);
-        formIsValid = true;
-    }
-     if(lastNameValue === ""){
-         createMessage(lastName);
-         formIsValid = false;
-         evt.preventDefault()
-     }else{
-         removeMessage(lastName);
-         formIsValid = true;
-     }
-    if(emailAddressValue === ""){
-        createMessage(emailAddress);
-        formIsValid = false;
-    }else{
-        removeMessage(emailAddress);
-        formIsValid = true;
-    }
-    if(generalEnquiryChecked || supportRequestChecked){
-        let queryMessage = document.getElementById("query").nextElementSibling;
-        queryMessage.style.display = "none";
-        formIsValid = true;
-    }else {
-        let queryMessage = document.getElementById("query").nextElementSibling;
-        queryMessage.style.display = "block";
-        formIsValid = false;
-    }
-    if(messageValue === ""){
-        createMessage(message);
-        formIsValid = false;
-    }else{
-        removeMessage(message);
-        formIsValid = true;
-    }
-    if(consent.checked){
-        let consentMessage = document.getElementById("consent-message");
-        consentMessage.style.display = "none";
-    }else {
-        let consentMessage = document.getElementById("consent-message");
-        consentMessage.style.display = "block";
-        formIsValid = false;
-    }
-    if(formIsValid){
-        let successMessage = document.getElementById("success-message");
-        successMessage.style.display = "block";
-    }else{
-        evt.preventDefault()
-    }
-}
 
+allTextInputs.forEach(textInputs => {
+    textInputs.addEventListener("focus", setActiveState);
+    textInputs.addEventListener("blur", nonActiveState); 
+})
+
+console.log(allTextInputs);
+form.addEventListener("submit", validateForm);
