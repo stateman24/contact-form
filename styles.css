@@ -228,8 +228,12 @@ input[type="text"]:hover, textarea:hover, input[type='email']:hover{
 
 
 
-/* Don't Touch */
-/* ========================================= */
+
+#success-message.hidden{
+    display: block;
+    opacity: 0;
+}
+
 #success-message {
     display: block;
     background-color: var(--Grey-darker);
@@ -243,12 +247,8 @@ input[type="text"]:hover, textarea:hover, input[type='email']:hover{
     left: 50%;
     transform: translate(-50%);
     margin: 10px auto;
+    opacity: 1;
     animation: success 8s normal forwards;
-}
-
-#success-message.hidden{
-    display: block;
-    opacity: 0;
 }
 
 #success-message img {
